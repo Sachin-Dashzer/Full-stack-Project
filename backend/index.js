@@ -1,19 +1,16 @@
-import express from 'express';
-import 'dotenv/config';
 
-const app = express();
+// Everything about node modules
 
+    // 1. Global modules
 
-const Port = process.env.PORT || 4000;
+        console.log(__dirname); // to find the dirctory name of current file
+        console.log(__filename); // to find the file name of current file
 
+    // 2. Require and export modules
 
-app.get("/hell" , (req , res)=>{
+            const add = require('./add'); // when we have to import data from another file
+            console.log(add( 3, 4));
 
-    res.send("<h1>hello bro </h1>")
-})
+    // 3. File system modules
 
-
-app.listen( Port , ()=>{
-
-    console.log(`the server is runnig at ${Port}`);
-})
+        
