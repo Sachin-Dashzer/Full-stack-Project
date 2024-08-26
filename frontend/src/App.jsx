@@ -7,7 +7,7 @@ function App() {
     <>
 
       <Header />
-      <h1>hdsk</h1>
+      <h1 className='font-bold bg-slate-300'>hdsk</h1>
      
     </>
   )
