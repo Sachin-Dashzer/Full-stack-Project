@@ -91,8 +91,7 @@ connectDB()
         // 2. Read data -:
 
         // To find all data in datalist 
-        // const alldata = await Users.find();
-        // console.log(alldata);
+           console.log(alldata);
 
         // To find multiple data 
         // const specialData = await Users.find({ name : "Dashzer"});
