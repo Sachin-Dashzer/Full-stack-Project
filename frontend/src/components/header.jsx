@@ -1,11 +1,13 @@
 import { useState } from "react";
+import headerForm from "./headerForm";
+import Test from "./Test";
 
 const Header = () => {
   const [formBox, setformBox] = useState(false);
 
   return (
     <>
-      <header className="py-2">
+      <header className="py-2 w-[100vw] overflow-hidden">
         <div className="topbar pb-2 px-4 flex items-center justify-between border-b-[1px] border-green-900">
           <div>
             <p className="text-sm text-green-500 pl-6 tracking-widest">
@@ -92,7 +94,8 @@ const Header = () => {
                 </li>
                 <li>
                   <a href="#">
-                    Our Blogs <i className="fa-solid fa-chevron-down pl-[4px]"></i>
+                    Our Blogs{" "}
+                    <i className="fa-solid fa-chevron-down pl-[4px]"></i>
                   </a>
                 </li>
               </ul>
@@ -100,28 +103,10 @@ const Header = () => {
           </div>
         </div>
       </header>
-{/* 
-      <section className="w-full h-full absolute left-0 top-0 z-10 bg-black backdrop-blur bg-opacity-50 flex justify-center items-center">
-        <div className="login-form w-2/5 p-5 bg-slate-900 backdrop-blur-sm ">
-          <form action="/login-submit" method="Post" className="w-full">
-            <div className="formBox w-[430px]">
-              <input type="text" placeholder="Name" name="name" className="w-full outline-none p-2 my-3 mx-auto bg-transparent border-b-[1px] border-slate-100"/>
-            </div>
-            <div className="formBox w-[430px]">
-              <input type="number" placeholder="Phone" name="phone" className="w-full outline-none p-2 my-3 mx-auto bg-transparent border-b-[1px] border-slate-100"/>
-            </div>
-            <div className="formBox w-[430px]">
-              <input type="email" placeholder="Email" name="email" className="w-full outline-none p-2 my-3 mx-auto bg-transparent border-b-[1px] border-slate-100"/>
-            </div>
-            
-            <div className="formBox w-[430px]"> 
-              <input type="number" placeholder="Age" name="age" className="w-full outline-none p-2 my-3 mx-auto bg-transparent border-b-[1px] border-slate-100"/>
-            </div>
-          </form>
-        </div>
 
+      {/* <headerForm /> */}
+      <Test/>
 
-      </section> */}
     </>
   );
 };
