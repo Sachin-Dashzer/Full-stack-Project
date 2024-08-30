@@ -3,16 +3,17 @@ import Users from "./models/user.model.js";
 
 
 
-// for express server
+// express files
 import express from 'express';
 const app = express();
 
+app.use(express.json());
 
 
-// for enviroment variable
-
+// env variables files
 import dotenv from 'dotenv';
 dotenv.config();
+
 const PORT = process.env.PORT || 3000;
 
 
@@ -25,29 +26,13 @@ const PORT = process.env.PORT || 3000;
 //     next();
 // });
 
-app.use(express.json());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 // connected to database and server is running
 
+// Connecting database
 connectDB()
     .then(() => {
         app.listen(PORT, () => {
@@ -81,6 +66,21 @@ connectDB()
 
 
 // Performing CRUD Operations on database
+// 2. method to connect database
+// const serverConnection = async() =>{
+//     try{
+//         mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`);
+//         console.log("Database Connected");
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// }
+// serverConnection();
+
+
+
+// performing crud operation on database
 (
     async () => {
 
@@ -122,6 +122,9 @@ connectDB()
 
         // To find all data in datalist 
         //    const alldata = await Users.find();
+
+        // const alldata = await Users.find();
+
         //    console.log(alldata);
 
         // To find multiple data 
@@ -181,6 +184,68 @@ connectDB()
 
 
 
+
+
+
+// creating crud api's
+
+
+// create data api
+app.post('/api/product', async (req, res) => {
+    const newdata = await Users.create(req.body);
+    console.log(newdata);
+
+    res.status(200).json({
+        success: true,
+        newdata
+    })
+})
+
+// read data api
+app.get('/api/products', async (req, res) => {
+    const alldata = await Users.find();
+    console.log(alldata);
+
+    res.status(201).json({ success: true, alldata })
+})
+
+
+// Update data api
+app.put("/api/product/:id", async (req, res) => {
+    let newData = await Users.findById(req.params.id);
+    newData = await Users.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false, runValidators: true });
+    if(!newData){
+        res.status(404).json({
+            success: false,
+            massage : "data not found"
+        })
+    }
+
+    res.status(200).json({
+        success: true,
+        newData
+    })
+})
+
+
+// Delete data api
+app.delete("/api/product/:id", async (req, res) => {
+    let selectdata = await Users.findById(req.params.id);
+    if(!selectdata){
+        res.status(404).json({
+            success: false,
+            massage : "data not found"
+        })
+    }
+
+    await selectdata.remove();
+
+    res.status(200).json({
+        success: true,
+        massage : "Data deleted successfully"
+
+    })
+})
 
 
 
