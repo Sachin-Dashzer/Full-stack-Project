@@ -1,26 +1,52 @@
-// const express = require('express');
-// require('dotenv').config();
-
-
-import express from 'express';
-import dotenv from 'dotenv';
 import connectDB from './db/index.js';
-
-
 import Users from "./models/user.model.js";
 
 
 
-
-
-
-
-
-dotenv.config();
-
+// for express server
+import express from 'express';
 const app = express();
 
+
+
+// for enviroment variable
+
+import dotenv from 'dotenv';
+dotenv.config();
 const PORT = process.env.PORT || 3000;
+
+
+
+
+
+// middleware which runs whenever the server is reloaded
+// app.use((req, res, next) => {
+//     console.log(req.ip); // logs the client's IP address
+//     next();
+// });
+
+app.use(express.json());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// connected to database and server is running
 
 connectDB()
     .then(() => {
@@ -29,19 +55,33 @@ connectDB()
         });
     })
     .then(() => {
-
         app.get('/', (req, res) => {
-            res.send('Hello World');
+            res.json({ name: 'John Doe', age: 30 }); // sends a JSON response
         });
+      
     })
     .catch((error) => {
         console.log(error);
     });
 
 
+    // 2nd method to connect db
+    // const serverConnection = async() =>{
+    //     try{
+    //         mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`);
+    //         console.log("Database Connected");
+    //     }
+    //     catch(error){
+    //         console.log(error);
+    //     }
+    // }
+    // serverConnection();
 
+
+
+
+// Performing CRUD Operations on database
 (
-
     async () => {
 
         // 1. Create -: 
@@ -72,16 +112,6 @@ connectDB()
         //         "email": "charlie.brown@example.com",
         //         "password": "letmein789"
         //     },
-        //     {
-        //         "name": "Diana Prince",
-        //         "email": "diana.prince@example.com",
-        //         "password": "wonderwoman321"
-        //     },
-        //     {
-        //         "name": "Ethan Hunt",
-        //         "email": "ethan.hunt@example.com",
-        //         "password": "missionImpossible007"
-        //     }
         // ]
         // )
         // console.log(newUsers);
@@ -91,7 +121,8 @@ connectDB()
         // 2. Read data -:
 
         // To find all data in datalist 
-           console.log(alldata);
+        //    const alldata = await Users.find();
+        //    console.log(alldata);
 
         // To find multiple data 
         // const specialData = await Users.find({ name : "Dashzer"});
@@ -125,9 +156,6 @@ connectDB()
 
 
     }
-
-
-
 )();
 
 
@@ -146,19 +174,6 @@ connectDB()
 
 
 
-
-
-// const serverConnection = async() =>{
-
-//     try{
-//         mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`);
-//         console.log("Database Connected");
-//     }
-//     catch(error){
-//         console.log(error);
-//     }
-// }
-// serverConnection();
 
 
 
