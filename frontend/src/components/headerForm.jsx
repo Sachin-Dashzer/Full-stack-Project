@@ -1,19 +1,25 @@
 import { useState } from "react";
 
-const headerForm = () => {
-
-
-    // const [formBox, setformBox] = useState(false);
-
-
+const HeaderForm = ({formBox , setformBox}) => {
+  
 
   return (
     <>
-      <section className="w-full h-full fixed z-10 left-0 top-0 bg-white backdrop-blur bg-opacity-50 flex justify-center items-center">
+      <section
+        className={`w-full h-full fixed z-10 left-0 top-0 bg-white backdrop-blur bg-opacity-50 flex justify-center items-center ${
+          formBox ? "flex" : "hidden"
+        }`}
+      >
         <div className="login-form w-2/5 p-5 px-10 bg-white backdrop-blur-sm rounded-md overflow-hidden">
-
-            <div className="cancelBtn absolute right-0 top-0 text-black text-2xl rotate-45 ">+</div>
-
+          <div
+            onClick={() => {
+              setformBox(!formBox);
+              console.log(formBox);
+            }}
+            className="cancelBtn absolute right-4 top-2 font-bold cursor-pointer text-black text-4xl rotate-45 "
+          >
+            +
+          </div>
 
           <h3 className="text-4xl font-serif text-black text-center my-3 font-semibold">
             Sign In Form
@@ -76,4 +82,4 @@ const headerForm = () => {
   );
 };
 
-export default headerForm;
+export default HeaderForm;

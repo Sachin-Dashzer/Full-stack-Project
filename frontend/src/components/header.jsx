@@ -1,9 +1,10 @@
 import { useState } from "react";
-import headerForm from "./headerForm";
+import HeaderForm from './HeaderForm.jsx';
 import Test from "./Test";
 
 const Header = () => {
   const [formBox, setformBox] = useState(false);
+  console.log(formBox);
 
   return (
     <>
@@ -64,10 +65,10 @@ const Header = () => {
                     <i className="fa-solid fa-cart-shopping"></i>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
+                <li className="cursor-pointer" onClick={()=>{setformBox(!formBox)}}>
+                  
                     <i className="fa-solid fa-user-tie"></i>
-                  </a>
+                
                 </li>
               </ul>
             </div>
@@ -104,7 +105,7 @@ const Header = () => {
         </div>
       </header>
 
-      {/* <headerForm /> */}
+      <HeaderForm formBox={formBox} setformBox={setformBox} />
       <Test/>
 
     </>
