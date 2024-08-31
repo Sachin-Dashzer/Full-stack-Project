@@ -1,12 +1,13 @@
 import connectDB from './db/index.js';
 import Users from "./models/user.model.js";
-
+import cors from 'cors';
 
 
 // express files
 import express from 'express';
 const app = express();
 
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
 
@@ -16,6 +17,17 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
+
+
+
+app.post("/api/form", (req, res) => {
+    const { name, email, message } = req.body;
+    console.log("Received form data:", { name, email, message });
+  
+  
+    res.json({ message: "Form data received successfully!" });
+  });
+  
 
 
 

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import HeaderForm from './HeaderForm.jsx';
-import Test from "./Test";
+import HeaderForm from './HeaderForm';
+ 
 
 const Header = () => {
   const [formBox, setformBox] = useState(false);
-  console.log(formBox);
 
   return (
     <>
@@ -70,7 +69,7 @@ const Header = () => {
                     <i className="fa-solid fa-user-tie"></i>
                 
                 </li>
-              </ul>
+              </ul>-
             </div>
           </div>
           <div className="nav-2 py-4 text-lg font-semibold flex items-center justify-center">
@@ -106,7 +105,7 @@ const Header = () => {
       </header>
 
       <HeaderForm formBox={formBox} setformBox={setformBox} />
-      <Test/>
+      
 
     </>
   );
