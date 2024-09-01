@@ -1,5 +1,6 @@
 import './App.css'
 import Header from './components/header'
+import Homepage from './pages/Homepage'
 
 function App() {
 
@@ -7,7 +8,8 @@ function App() {
     <>
 
       <Header />
-      <h1 className='font-bold bg-slate-300'>hdsk</h1>
+
+      <Homepage />
      
     </>
   )
