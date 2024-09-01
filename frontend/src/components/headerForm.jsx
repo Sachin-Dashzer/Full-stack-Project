@@ -15,28 +15,34 @@ const HeaderForm = ({ formBox, setformBox }) => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(formData);
+
     try {
-      const response = await fetch("http://localhost:5000/api/form", {
-        method: "POST",
+      const response = await fetch('http://localhost:5000/api/form', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const data = await response.json();
-      console.log("Response from server:", data);
+      console.log('Success:', data);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error('Error:', error);
     }
   };
-
 
   return (
     <>
       <section
-        className={`w-full h-full fixed z-10 left-0 top-0 bg-white backdrop-blur bg-opacity-50 flex justify-center items-center ${
-          formBox ? "flex" : "hidden"
-        }`}
+        className={`w-full h-full fixed z-10 left-0 top-0 bg-white backdrop-blur bg-opacity-50 flex justify-center items-center ${formBox ? "flex" : "hidden"
+          }`}
       >
         <div className="login-form w-2/5 p-5 px-10 bg-white backdrop-blur-sm rounded-md overflow-hidden">
           <div

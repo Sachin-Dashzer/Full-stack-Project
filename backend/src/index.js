@@ -1,6 +1,7 @@
 import connectDB from './db/index.js';
 import Users from "./models/user.model.js";
 
+import cors from 'cors';
 
 
 
@@ -9,6 +10,41 @@ import express from 'express';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+
+
+
+app.post('/api/form', (req, res) => {
+
+    const { name,
+        phone,
+        email,
+        age,
+        address } = req.body;
+
+    console.log('Received data:', {
+        name,
+        phone,
+        email,
+        age,
+        address
+    });
+
+    res.json({ message: 'Form data received successfully!' });
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 // env variables files
@@ -175,10 +211,10 @@ app.get('/api/products', async (req, res) => {
 app.put("/api/product/:id", async (req, res) => {
     let newData = await Users.findById(req.params.id);
     newData = await Users.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false, runValidators: true });
-    if(!newData){
+    if (!newData) {
         res.status(404).json({
             success: false,
-            massage : "data not found"
+            massage: "data not found"
         })
     }
 
@@ -192,10 +228,10 @@ app.put("/api/product/:id", async (req, res) => {
 // Delete data api
 app.delete("/api/product/:id", async (req, res) => {
     let selectdata = await Users.findById(req.params.id);
-    if(!selectdata){
+    if (!selectdata) {
         res.status(404).json({
             success: false,
-            massage : "data not found"
+            massage: "data not found"
         })
     }
 
@@ -203,7 +239,7 @@ app.delete("/api/product/:id", async (req, res) => {
 
     res.status(200).json({
         success: true,
-        massage : "Data deleted successfully"
+        massage: "Data deleted successfully"
 
     })
 })
