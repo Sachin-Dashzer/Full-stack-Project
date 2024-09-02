@@ -1,3 +1,3 @@
 
 
-export const DB_NAME = "Products"
+export const DB_NAME = "Users"

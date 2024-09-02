@@ -1,5 +1,6 @@
 import connectDB from './db/index.js';
 import Users from "./models/user.model.js";
+import mongoose from 'mongoose';
 
 import cors from 'cors';
 
@@ -54,37 +55,36 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 // Connecting database
-connectDB()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    })
-    .then(() => {
+// connectDB()
+//     .then(() => {
+//         console.log('Connected to MongoDB');
 
-        app.get('/', (req, res) => {
-            res.send('Hello World');
-        });
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+//     })
 
+//     .catch(err => {
+//         console.error('Error connecting to MongoDB:', err);
+//     });
 
 // 2. method to connect database
-// const serverConnection = async() =>{
-//     try{
-//         mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`);
-//         console.log("Database Connected");
-//     }
-//     catch(error){
-//         console.log(error);
-//     }
-// }
-// serverConnection();
+const serverConnection = async() =>{
+    try{
+        await mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`);
+        console.log("Database Connected");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+serverConnection();
 
 
 
