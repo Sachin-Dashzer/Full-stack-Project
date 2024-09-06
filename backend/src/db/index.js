@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const connectDB = async() =>{
 
     try{
-        const connectionData = await  mongoose.connect(`${process.env.MONGO_URL}/${DB_NAME}`);
+        const connectionData = await  mongoose.connect(`${process.env.MONGO_URL}/${DB_NAME}?retryWrites=true&w=majority`);
     }
     catch(error){
 
