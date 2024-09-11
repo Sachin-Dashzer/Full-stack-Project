@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HeaderForm from './HeaderForm';
- 
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
   const [formBox, setformBox] = useState(false);
@@ -45,17 +46,32 @@ const Header = () => {
                 Backend
               </h2>
             </div>
-            <div className="searchBox w-[55%] mx-auto">
-              <div className="searchBox w-full py-4">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="bg-none outline-none py-[7px] w-[70%] px-4"
-                />
-                <button className="px-6 py-[7px] text-black border-l-2 border-black bg-yellow-400">
-                  Submit
-                </button>
-              </div>
+            <div className="nav-menu  ">
+              <ul className="flex gap-10 text-md">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+
+                <li>
+                  <Link to="/pages">
+                    Pages <i className="fa-solid fa-chevron-down pl-[4px]"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/shop">
+                    Shop <i className="fa-solid fa-chevron-down pl-[4px]"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <Link to="/blogs">
+                    Our Blogs{" "}
+                    <i className="fa-solid fa-chevron-down pl-[4px]"></i>
+                  </Link>
+                </li>
+              </ul>
             </div>
             <div className="storedata">
               <ul className="flex items-center gap-5 text-2xl pr-6">
@@ -64,48 +80,20 @@ const Header = () => {
                     <i className="fa-solid fa-cart-shopping"></i>
                   </a>
                 </li>
-                <li className="cursor-pointer" onClick={()=>{setformBox(!formBox)}}>
-                  
-                    <i className="fa-solid fa-user-tie"></i>
-                
-                </li>
-              </ul>-
-            </div>
-          </div>
-          <div className="nav-2 py-4 text-lg font-semibold flex items-center justify-center">
-            <div className="nav-menu  ">
-              <ul className="flex gap-10 text-md">
-                <li>
-                  <a href="#">Home</a>
-                </li>
+                <li className="cursor-pointer" onClick={() => { setformBox(!formBox) }}>
 
-                <li>
-                  <a href="#">
-                    Pages <i className="fa-solid fa-chevron-down pl-[4px]"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Shop <i className="fa-solid fa-chevron-down pl-[4px]"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">About us</a>
-                </li>
-                <li>
-                  <a href="#">
-                    Our Blogs{" "}
-                    <i className="fa-solid fa-chevron-down pl-[4px]"></i>
-                  </a>
+                  <i className="fa-solid fa-user-tie"></i>
+
                 </li>
               </ul>
             </div>
           </div>
+          
         </div>
       </header>
 
       <HeaderForm formBox={formBox} setformBox={setformBox} />
-      
+
 
     </>
   );

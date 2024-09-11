@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const HeaderForm = ({ formBox, setformBox }) => {
+  
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -13,30 +17,37 @@ const HeaderForm = ({ formBox, setformBox }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const formSubmit = async (e) => {
-    e.preventDefault();
+  // const formSubmit = async (e) => {
+  //   e.preventDefault();
 
-    console.log(formData);
+  //   console.log(formData);
 
-    try {
-      const response = await fetch('http://localhost:5000/api/form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+  //   try {
+  //     const response = await fetch('http://localhost:5000/api/form', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData)
+  //     });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
 
-      const data = await response.json();
-      console.log('Success:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  //     const data = await response.json();
+  //     console.log('Success:', data);
+
+  //     setformBox(!formBox);
+  //     navigate('/thanks')
+      
+
+
+  //   } catch (error) {
+  //     console.error('Error:', error);
+      
+  //   }
+  // };
 
   return (
     <>
@@ -59,7 +70,7 @@ const HeaderForm = ({ formBox, setformBox }) => {
             Sign In Form
           </h3>
 
-          <form onSubmit={formSubmit} className="w-full">
+          <form className="w-full">
             <div className="login-container">
               <div className="formBox">
                 <input
