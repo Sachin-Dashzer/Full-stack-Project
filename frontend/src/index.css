@@ -1,23 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-
-    background-color: black;
-    color: white;
-}
-
-
-
-.login-container{
-    display: grid;
-    grid-template-columns:  auto auto;
-    column-gap: 30px;
-}
