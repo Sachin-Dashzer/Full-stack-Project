@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const SlickSlider = () => {
-  const [state, setstate] = useState(0)
+  const [state, setstate] = useState(1);
   const blogs = [
     {
       title: "Understanding the web",
@@ -47,22 +47,20 @@ const SlickSlider = () => {
     },
   ];
 
-
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      setstate(state + 1);
+    const interval = setTimeout(() => {
+      if (state === blogs.length - 1) {
+        setstate(0);
+      } else {
+        setstate(state + 1);
+      }
+
       console.log(state);
-    }, 3000);
+    }, 5500);
 
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [state]);
 
-
-
-
-  
   const settings = {
     dots: false,
     infinite: true,
@@ -70,7 +68,7 @@ const SlickSlider = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5300,
     arrows: false,
     vertical: true,
     // verticalSwiping: true,
@@ -78,18 +76,20 @@ const SlickSlider = () => {
 
   return (
     <div>
-      {/* <div className="heroBanner h-[540px] w-full overflow-hidden">
+      <div className="heroBanner h-[540px] w-full overflow-hidden">
         <div className="heroBannerGrid  w-full h-full grid grid-cols-[5fr_2fr] ">
-          <div className="mainBanner h-full border-2 " style={{ backgroundImage: `url(${blogs[state].image})`}}>
-
-
-            <h1>{blogs[state].title}</h1>
-
-
-
-
-
-
+          <div
+            className="mainBanner w-full h-full border-2 bg-cover bg-left"
+            style={{
+              backgroundImage: `url(${blogs[state].image})`,
+              transition: "all 1s ease-in-out",
+            }}
+          >
+            <div className="bannerheading absolute bottom-52 left-10 w-1/3">
+              <h1 className="text-6xl font-bold text-white ">
+                {blogs[state].title}
+              </h1>
+            </div>
           </div>
           <div className="sideBanner h-full">
             <div className="sidebarFlex h-full">
@@ -120,7 +120,7 @@ const SlickSlider = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
