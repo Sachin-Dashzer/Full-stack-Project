@@ -99,13 +99,13 @@ const SlickSlider = () => {
                     <>
                       <div
                         key={index}
-                        className="top-blogs h-[180px] w-full bg-cover"
+                        className="top-blogs pt-16 px-6 h-[180px] w-full bg-cover"
                         style={{ backgroundImage: `url(${blog.image})` }}
                       >
-                        <div className="genreBox px-2 py-1 bg-primary text-white">
-                          <p className="text-sm">{blog.genre}</p>
+                        <div className="genreBox inline-block p-1 px-2 rounded-sm bg-primary text-white">
+                          <p className="text-[10px]">{blog.genre}</p>
                         </div>
-                        <h2>{blog.title}</h2>
+                        <h2 className="font-bold text-lg">{blog.title}</h2>
                         <h5>
                           By <span>{blog.author}</span>
                         </h5>
