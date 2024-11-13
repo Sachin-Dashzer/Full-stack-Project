@@ -1,1 +1,1 @@
-export default DB_NAME = "sachinDashzer"
+export const DB_NAME = "Users"
