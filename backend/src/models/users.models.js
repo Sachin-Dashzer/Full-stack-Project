@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt from "json-web-token";
 
 const userSchema = new Schema(
     {
@@ -26,14 +26,14 @@ const userSchema = new Schema(
             type: String
 
         },
-        profileImg: {
-            type: String, // claudinary url
-            default: ""
-        },
-        watchHistory: {
-            type: Schema.Types.ObjectId,
-            ref: "images"
-        }
+        // profileImg: {
+        //     type: String, // claudinary url
+        //     default: ""
+        // },
+        // watchHistory: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: "images"
+        // }
     },
     { timestamps: true }
 
@@ -42,10 +42,10 @@ const userSchema = new Schema(
 
 ////////// to encrypt our password for protection
 userSchema.pre("save", async function (next) {
-    if (!this.modified("password")) {
+    if (!this.isModified("password")) {
         return next();
     }
-    this.password = bcrypt.hash(this.password, 12)
+    this.password = await bcrypt.hash(this.password, 12)
     next()
 })
 
