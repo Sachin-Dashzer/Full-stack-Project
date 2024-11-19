@@ -8,7 +8,7 @@ const imgSchema = new Schema(
             required : true
         },
         title : {
-            type : string , // claudinary url
+            type : string , 
             required : true
         },
         owner : {

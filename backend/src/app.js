@@ -20,8 +20,10 @@ app.use(cookieParser())
 
 // Routes files
 import userRoute from './routes/userRouter.js'
+import productRouter from './routes/productRouter.js'
 
 app.use("/v1/user" , userRoute)
+app.use("/v1/product" , productRouter)
 
 
 
